@@ -1,0 +1,44 @@
+{{define "reservant"}}
+<!DOCTYPE html>
+<html>
+    <head>
+            <link href="/StyleHeader.css" rel="stylesheet">
+            <link href="/StyleMain.css" rel="stylesheet">
+            <link href="/StyleFooter.css" rel="stylesheet">
+            <link href="/StyleReservant.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+                <a href="customers" class="current">Покупатели</a>
+                <a href="venues" class="current">Спортивные сооружения</a>
+                <a href="events" class="current">Спортивные события</a>
+        </header>
+        <main>
+
+            <div class="customer-event">
+                <div class="customer">
+                    <div>Имя: {{.Customer.Name}}</div>
+                    <div>Фамилия: {{.Customer.SecondName}}</div>
+                    <div>Возраст: {{.Customer.Age}}</div>
+                </div>
+                <div class="events-containeer">
+                    <div class="event">
+                        <div class="event-name">Название</div>
+                        <div class="event-time">Время</div>
+                    </div>
+                    {{range .Events}}
+                        <div class="event">
+                            <div class="event-name">{{.Name}}</div>
+                            <div class="event-time">{{.Time}}</div>
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+        </footer>
+    </body>
+</html>
+{{end}}

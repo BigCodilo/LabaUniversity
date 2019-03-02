@@ -1,0 +1,44 @@
+.event-venue-name-table-containeer{
+    display: flex;
+    position: relative;
+    left: 20%;
+    top: 5vh;
+    width: 70%;
+}
+
+.event-venue-containeer{
+    display: flex;
+    position: relative;
+    left: 20%;
+    top: 7vh;
+    width: 70%;
+}
+
+.event-venue-containeer div, .event-venue-name-table-containeer div{
+    padding: 5px 10px;
+    border: 1px solid rgb(255, 230, 0);
+}
+
+.number{
+    width: 5%;
+}
+
+.event-name{
+    width: 25%;
+}
+
+.time{
+    width: 10%;
+}
+
+.venue-name{
+    width: 25%;
+}
+
+.type{
+    width: 15%;
+}
+
+.addres{
+    width: 15%;
+}

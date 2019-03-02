@@ -1,0 +1,43 @@
+{{define "customers"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="styleHeader.css" rel="stylesheet">
+        <link href="styleMain.css" rel="stylesheet">
+        <link href="styleFooter.css" rel="stylesheet">
+        <link href="styleCustomers.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a href="customers" class="current">Покупатели</a>
+            <a href="venues">Спортивные сооружения</a>
+            <a href="events">Спортивные события</a>
+        </header>
+        <main>
+
+            <div class="customer-table-info">
+                <div class="number">№</div>
+                <div class="name">Имя</div>
+                <div class="surname">Фамилия</div>
+                <div class="age">Возраст</div>
+                <div class="passport">Серия и номер пасспорта</div>
+                <div class="addres">Адрес</div>
+            </div>
+            {{range . }}
+                <div class="customer-containeer">
+                    <div class="number">{{.ID}}</div>
+                    <a href="reservant/{{.ID}}"  class="name">{{.Name}}</a>
+                    <div  class="surname">{{.SecondName}}</div>
+                    <div  class="age">{{.Age}}</div>
+                    <div  class="passport">{{.Passport}}</div>
+                    <div  class="addres">{{.Addres}}</div>
+                </div>
+            {{end}}
+
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>
+{{end}}

@@ -1,0 +1,41 @@
+{{define "events"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="styleHeader.css" rel="stylesheet">
+        <link href="styleMain.css" rel="stylesheet">
+        <link href="styleFooter.css" rel="stylesheet">
+        <link href="styleEvents.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a href="customers">Покупатели</a>
+            <a href="venues">Спортивные сооружения</a>
+            <a href="events"  class="current">Спортивные события</a>
+        </header>
+        <main>
+            <div class="event-venue-name-table-containeer">
+                <div class="number">№</div>
+                <div class="event-name">Название мероприятия</div>
+                <div class="time">Время</div>
+                <div class="venue-name">Название спортивного сооружения</div>
+                <div class="type">Тип сооружения</div>
+                <div class="addres">Адресс</div>
+            </div>
+            {{range .}}
+                <div class="event-venue-containeer">
+                    <div class="number">{{.Event.ID}}</div>
+                    <div class="event-name">{{.Event.Name}}</div>
+                    <div class="time">{{.Event.Time}}</div>
+                    <div class="venue-name">{{.Venue.Name}}</div>
+                    <div class="type">{{.Venue.Type}}</div>
+                    <div class="addres">{{.Venue.Addres}}</div>
+                </div>
+            {{end}}
+        </main>
+    </body>
+    <footer>
+
+    </footer>
+</html>
+{{end}}

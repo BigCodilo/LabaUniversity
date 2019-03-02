@@ -1,0 +1,32 @@
+{{define "venues"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="styleHeader.css" rel="stylesheet">
+        <link href="styleMain.css" rel="stylesheet">
+        <link href="styleFooter.css" rel="stylesheet">
+        <link href="styleVenues.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a href="customers">Покупатели</a>
+            <a href="venues" class="current">Спортивные сооружения</a>
+            <a href="events">Спортивные события</a>
+        </header>
+        <main>
+            {{range .}}
+                <div class="venue-containeer">
+                    <img src="{{.ImageURL}}">
+                    <div class="name">Название: {{.Name}}</div>
+                    <div class="type">Тип: {{.Type}}</div>
+                    <div class="addres">Аддрес: {{.Addres}}</div>
+                </div>
+            {{end}}
+
+        </main>
+    </body>
+    <footer>
+
+    </footer>
+</html>
+{{end}}

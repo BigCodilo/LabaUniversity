@@ -1,0 +1,27 @@
+.customer-event{
+    display: flex;
+    width: 70%;
+    position: relative;
+    left: 20%;
+    top: 10vh;
+}
+
+.customer-event .customer{
+    font-size: 3em;
+    border: 1px solid rgb(255, 230, 0);
+    padding: 30px;
+}
+
+.customer-event .events-containeer{
+    font-size: 2em;
+    margin-left: 5%;
+}
+
+.customer-event .events-containeer .event{
+    display: flex;
+}
+
+.event div{
+    border: 1px solid rgb(255, 230, 0);
+    width: 300px;
+}

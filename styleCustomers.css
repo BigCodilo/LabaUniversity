@@ -1,0 +1,52 @@
+.customer-table-info{
+    position: relative;
+    display: flex;
+    width: 70%;
+    left: 20%;
+    top: 5vh;
+    height: 30px;
+}
+
+.customer-table-info div{
+    border: 1px solid rgb(255, 230, 0);
+    padding: 5px 10px;
+}
+
+.customer-containeer{
+    position: relative;
+    display: flex;
+    width: 70%;
+    left: 20%;
+    top: 7vh;
+    height: 30px;
+}
+
+.customer-containeer div, .customer-containeer a{
+    padding: 5px 10px;
+    border: 1px solid rgb(255, 230, 0);
+}
+
+.number{
+    width: 5%;
+}
+
+.name{
+    width: 15%;
+    color: white;
+}
+
+.surname{
+    width: 15%;
+}
+
+.age{
+    width: 10%;
+}
+
+.passport{
+    width: 25%;
+}
+
+.addres{
+    width: 25%;
+}
