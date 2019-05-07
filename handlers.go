@@ -1,17 +1,54 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/MPROJECTS/laba/model"
 	"github.com/MPROJECTS/laba/model/datamodel"
 	"github.com/gorilla/mux"
 )
 
+func ClearIPMap() {
+	for {
+		//fmt.Println(IPs)
+		IPs = make(map[string]int)
+		time.Sleep(5 * time.Second)
+	}
+}
+
+func ConsoleLogger(IPAndPort string, hadnler string, w http.ResponseWriter) bool {
+	IP := IPAndPort[:len(IPAndPort)-6]
+
+	valIP, ok := IPs[IP]
+	if ok {
+		valIP++
+		IPs[IP] = valIP
+	} else {
+		IPs[IP] = 0
+	}
+
+	if valIP > 10 {
+		w.WriteHeader(404)
+		return true
+	}
+
+	fmt.Println("Someone connect to ", hadnler, " from ", IP, " with second count ", IPs[IP])
+	return false
+}
+
 //EventsHandler - 1
 func EventsHandler(w http.ResponseWriter, r *http.Request) {
+	// if coockie, _ := r.Cookie("Token"); coockie == nil {
+	// 	w.WriteHeader(404)
+	// 	return
+	// }
+	if ConsoleLogger(r.RemoteAddr, r.RequestURI, w) {
+		return
+	}
 	tmpl, _ := template.ParseFiles("eventsHtml.html")
 
 	db := &model.DataBase{}
@@ -39,6 +76,13 @@ func EventsHandler(w http.ResponseWriter, r *http.Request) {
 
 //VenuesHandler - 2
 func VenuesHandler(w http.ResponseWriter, r *http.Request) {
+	// if coockie, _ := r.Cookie("Token"); coockie == nil {
+	// 	w.WriteHeader(404)
+	// 	return
+	// }
+	if ConsoleLogger(r.RemoteAddr, r.RequestURI, w) {
+		return
+	}
 	tmpl, _ := template.ParseFiles("venuesHtml.html")
 
 	db := &model.DataBase{}
@@ -51,6 +95,13 @@ func VenuesHandler(w http.ResponseWriter, r *http.Request) {
 
 //ReservantHandler - 3
 func ReservantHandler(w http.ResponseWriter, r *http.Request) {
+	// if coockie, _ := r.Cookie("Token"); coockie == nil {
+	// 	w.WriteHeader(404)
+	// 	return
+	// }
+	if ConsoleLogger(r.RemoteAddr, r.RequestURI, w) {
+		return
+	}
 	tmpl, _ := template.ParseFiles("reservantHtml.html")
 	vars := mux.Vars(r)
 	IDCustomer, _ := strconv.Atoi(vars["Id"])
@@ -85,6 +136,13 @@ func ReservantHandler(w http.ResponseWriter, r *http.Request) {
 
 //CustomersHandler - 4
 func CustomersHandler(w http.ResponseWriter, r *http.Request) {
+	// if coockie, _ := r.Cookie("Token"); coockie == nil {
+	// 	w.WriteHeader(404)
+	// 	return
+	// }
+	if ConsoleLogger(r.RemoteAddr, r.RequestURI, w) {
+		return
+	}
 	tmpl, _ := template.ParseFiles("customersHtml.html")
 
 	db := &model.DataBase{}
@@ -93,4 +151,25 @@ func CustomersHandler(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	tmpl.ExecuteTemplate(w, "customers", customers)
+}
+
+func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	// if coockie, _ := r.Cookie("Token"); coockie == nil {
+	// 	w.WriteHeader(404)
+	// 	return
+	//	}
+	if ConsoleLogger(r.RemoteAddr, r.RequestURI, w) {
+		return
+	}
+	w.Write([]byte("артем и дима пидарасы"))
+}
+
+func SetTokenHandler(w http.ResponseWriter, r *http.Request) {
+	hour, min, _ := time.Now().Clock()
+	token := strconv.Itoa(hour * min)
+	cookie := http.Cookie{
+		Name:  "Token",
+		Value: token,
+	}
+	http.SetCookie(w, &cookie)
 }
